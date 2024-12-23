@@ -1,0 +1,25 @@
+---
+- name: Ensure Docker is installed
+  apt:
+    name: docker.io
+    state: present
+
+- name: Start Docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Pull HAProxy container image
+  docker_image:
+    name: aps123/docker-challenge
+    tag: latest
+    source: pull
+
+- name: Run HAProxy container
+  docker_container:
+    name: haproxy
+    image: aps123/docker-challenge
+    ports:
+      - "80:80"
+    state: started

@@ -1,0 +1,14 @@
+---
+- name: Pull Metrics Scraper container image
+    docker_image:
+    name: aps123/metrics_scraper
+    tag: latest
+    source: pull
+
+- name: Run Metrics Scraper container
+    docker_container:
+    name: metrics_scraper
+    image: aps123/metrics_scraper:latest
+    ports:
+        - "8080:8080"
+    state: started

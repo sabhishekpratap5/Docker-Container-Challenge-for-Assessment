@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: Include HAProxy role
+      include_role:
+        name: haproxy
+
+    - name: Include Metrics Scraper role
+      include_role:
+        name: metrics_scraper
